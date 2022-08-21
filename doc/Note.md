@@ -1,10 +1,33 @@
 
 ## 部署
 
+1 安装 nodejs 环境
+[如何在Ubuntu 18.04安装Node.js和npm | myfreax](https://www.myfreax.com/how-to-install-node-js-on-ubuntu-18-04/)
+```shell
+cat /etc/issue
+#Ubuntu 18.04 LTS
+apt update
+apt install nodejs npm
+#安装 n , 管理 node 版本
+npm install -g n
+n lts
+```
 
+3 安装 `pm2`
+```shell
+npm i pm2 -g
+```
 
+3 初始化部署目录
+```
+npm init -y
+npm install express body-parser compression -S
+```
 
-
+4 上传 dist 和 bao-tool-site.js
+```shell
+pm2 start bao-tool-site.js
+```
 
 ## 发布
 

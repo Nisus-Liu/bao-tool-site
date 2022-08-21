@@ -28,6 +28,10 @@ describe('BaoJson', () => {
 }`;
     const parseContext: ParseContext = parse(json);
     console.log(parseContext);
+    // 进一步可以解析 commentMeta, 默认不解析, parseContext.commentMeta 是null
+    // 解析后, parseContext.commentMeta 字段有值
+    const commentMeta = parseContext.parseComment();
+    console.log(commentMeta);
 
     expect(parseContext).not.toBeNull()
   })
