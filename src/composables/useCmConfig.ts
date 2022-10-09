@@ -88,7 +88,7 @@ export default function useCmConfig(customOptions = {}) {
   onMounted(() => {
     // cminstance 拿到原始 cm 对象
     let editor = cmRef.value.cminstance;
-    // //代码自动提示功能，记住使用cursorActivity事件不要使用change事件，这是一个坑，那样页面直接会卡死
+    // 代码自动提示功能，记住使用cursorActivity事件不要使用change事件，这是一个坑，那样页面直接会卡死
     editor.on('inputRead', function () {
       editor.showHint()
     })

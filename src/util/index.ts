@@ -1,3 +1,5 @@
+import jsonSchema2JavaBean from './jsonSchema2JavaBean'
+
 /**
  * 参照 java 日期格式标准
  */
@@ -37,4 +39,5 @@ class DateFormat {
 
 export {
   DateFormat,
+  jsonSchema2JavaBean,
 }
