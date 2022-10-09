@@ -7,7 +7,7 @@
   <BasicLayout></BasicLayout>
 </template>
 <script lang="ts">
-import BasicLayout from "@/views/BasicLayout.vue";
+import BasicLayout from "@/views/layout/BasicLayout.vue";
 import { defineComponent } from 'vue';
 export default defineComponent({
   components: {

@@ -8,7 +8,7 @@
         <a-menu-item key="home">
           <router-link to="/home">Home</router-link>
         </a-menu-item>
-        <a-sub-menu key="java2struct">
+        <a-sub-menu key="fromJson">
           <!--<pie-chart-outlined />-->
           <template #title>From JSON</template>
           <a-menu-item key="json2javabean">
@@ -16,6 +16,12 @@
           </a-menu-item>
           <a-menu-item key="json2jsonschema">
             <router-link to="/json2jsonschema">To JsonSchema</router-link>
+          </a-menu-item>
+        </a-sub-menu>
+        <a-sub-menu key="fromJsonSchema">
+          <template #title>From JSON Schema</template>
+          <a-menu-item key="jsonSchema2JavaBean">
+            <router-link to="/jsonSchema2JavaBean">To JavaBean</router-link>
           </a-menu-item>
         </a-sub-menu>
         <a-menu-item key="about">

@@ -10,12 +10,17 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/json2javabean',
     name: 'Json2JavaBean',
-    component: () => import('../views/Json2JavaBean.vue')
+    component: () => import('../views/fromjson/Json2JavaBean.vue')
   },
   {
     path: '/json2jsonschema',
     name: 'Json2Jsonschema',
-    component: () => import('../views/Json2Jsonschema.vue')
+    component: () => import('../views/fromjson/Json2Jsonschema.vue')
+  },
+  {
+    path: '/jsonSchema2JavaBean',
+    name: 'jsonSchema2JavaBean',
+    component: () => import('../views/fromjsonschema/JsonSchema2JavaBean.vue')
   },
   {
     path: '/about',
