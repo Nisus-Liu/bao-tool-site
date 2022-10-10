@@ -12,11 +12,16 @@
         </a-form>
       </a-tab-pane>
       <a-tab-pane key="2" tab="预览">
-        <!--<Codemirror v-model:value="result" :options="cmOptions" :height="800" border />-->
+        <a-anchor style="text-align: left; float: left">
+          <a-anchor-link v-for="item in result" :key="item.path"
+                         :href="'#' + item.path"
+                         :title="item.path" @click="onAnchorClick" />
+        </a-anchor>
         <div v-for="item in result" :key="item.path">
-          {{item.path}}
-          ---
-          {{item.content}}
+          <a-card :bordered="false" style="margin-left: 120px">
+            <template v-slot:title><a style="height: 32px; font-weight: bold" :id="item.path">{{item.path}}</a></template>
+            <Codemirror v-model:value="item.content" :options="cmOptions" :height="600" border />
+          </a-card>
         </div>
       </a-tab-pane>
     </a-tabs>
@@ -26,10 +31,9 @@
 
 <script lang="ts">
 import {defineComponent, reactive, ref, toRaw} from 'vue';
-import {DemoJson1} from "@/db/demodata";
+import {DemoJsonSchema} from "@/db/demodata";
 import useCmConfig from "@/composables/useCmConfig";
 import {jsonSchema2JavaBean} from "@/util";
-
 
 export default defineComponent({
   setup() {
@@ -37,7 +41,7 @@ export default defineComponent({
     const tabPosition = ref('right');
     const formState = reactive({
       // 也用 json 名, 虽然 json schema, 格式上还是个 json
-      json: DemoJson1,
+      json: DemoJsonSchema,
       tpl: '',
       isJavadocComment: '1',
     });
@@ -74,7 +78,23 @@ export default defineComponent({
 
     function getResult() {
 
-      result.value = jsonSchema2JavaBean(formState.json);
+      try {
+        result.value = jsonSchema2JavaBean(formState.json);
+      } catch (e) {
+        parseError.value = e.message;
+        // activeKey 强行置回到 1
+        activeKey.value = '1';
+        throw e;
+      }
+    }
+
+    /**
+     * 解决锚点跳转后URL改变问题, hash模式下跳转有问题.
+     * [Antd的anchor组件点击锚点导致路由发生变化_天猫精灵998的博客-CSDN博客_a-anchor](https://blog.csdn.net/weixin_43487782/article/details/108873639)
+     */
+    function onAnchorClick(e, link) {
+      // 阻止点击的默认事件修改路由
+      e.preventDefault();
     }
 
     return {
@@ -90,6 +110,7 @@ export default defineComponent({
       onSubmit,
       onJsonChange,
       result,
+      onAnchorClick,
     }
   },
 })

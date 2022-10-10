@@ -5,6 +5,17 @@
 import {isPrimitiveType, JsonType, jsonTypeToJavaType} from "@/util/typeUtil";
 import {capitalize, nop} from "@/util/kits";
 
+function parsePropertyComment(property) {
+  if (!(property.description || property.mock)) {
+    return '';
+  }
+
+  return `/**
+     * ${property.description ? property.description : ''}
+     * ${property.mock ? '@mock' + ' ' + property.mock.mock : ''}
+     */`;
+}
+
 function handleProperties(properties, queue: any[], path: string): string {
   return Object.keys(properties).map(k => {
     let property = properties[k];
@@ -24,12 +35,9 @@ function handleProperties(properties, queue: any[], path: string): string {
     }
 
     return `
-/**
- * ${property.description ? property.description : ''}
- * ${property.mock ? '@mock' + ' ' + property.mock.mock : ''}
- */
-private ${jsonTypeToJavaType(type)} ${k};`;
-  }).filter(e => e).join('\n    ')
+    ${parsePropertyComment(property)}
+    private ${jsonTypeToJavaType(type)} ${k};`;
+  }).filter(e => e).join('\n')
 }
 
 function schemaObjectToJavaBean(jsonSchemaObj, path: string, queue: any[]): string {
