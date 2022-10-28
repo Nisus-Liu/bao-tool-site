@@ -21,6 +21,9 @@ export function isPrimitiveType(type: JsonType | string) {
 }
 
 export function jsonTypeToJavaType(type: JsonType | string) {
+  if (type == null) {
+    return JsonType.OBJECT;
+  }
   switch (type) {
     case JsonType.OBJECT:
       return JavaType.OBJECT;

@@ -2,7 +2,7 @@
  * 解析 schema, 广度优先遍历, 生成多个对象.
  * 一个 json 路径对应一个对象内容
  */
-import {isPrimitiveType, JsonType, jsonTypeToJavaType} from "@/util/typeUtil";
+import {isPrimitiveType, JavaType, JsonType, jsonTypeToJavaType} from "@/util/typeUtil";
 import {capitalize, nop} from "@/util/kits";
 
 function parsePropertyComment(property) {
@@ -17,12 +17,17 @@ function parsePropertyComment(property) {
 }
 
 function handleProperties(properties, queue: any[], path: string): string {
+  if (properties == null) {
+    return;
+  }
+
   return Object.keys(properties).map(k => {
     let property = properties[k];
     if (!property) {
       return null;
     }
 
+    let complexJavaType = null;
     const type = property.type;
     if (isPrimitiveType(type)) {
       nop();
@@ -31,17 +36,37 @@ function handleProperties(properties, queue: any[], path: string): string {
     } else if (type == JsonType.ARRAY) {
       const items = property['items'];
       // 和 object 很类似, {type,properties,required}
-      queue.push([path + '.' + k, items]);
+      if (items.type == JsonType.OBJECT) {
+        queue.push([path + ".$L" + '.' + k, items]);
+        complexJavaType = `List<${jsonTypeToJavaType(items.type)}>`;
+      } else if (items.type == JsonType.ARRAY) {
+        queue.push([path + ".$L.$L" + '.' + k, items]);
+        // Array<Array<>>
+        complexJavaType = `List<List<${jsonTypeToJavaType(items?.items?.type)}>>`;
+      } else {
+        // 类似 Array<String>
+        complexJavaType = `List<${jsonTypeToJavaType(items.type)}>`;
+      }
     }
 
+    const javaType = complexJavaType ? complexJavaType : jsonTypeToJavaType(type);
     return `
     ${parsePropertyComment(property)}
-    private ${jsonTypeToJavaType(type)} ${k};`;
+    private ${javaType} ${k};`;
   }).filter(e => e).join('\n')
 }
 
 function schemaObjectToJavaBean(jsonSchemaObj, path: string, queue: any[]): string {
-  const properties = jsonSchemaObj['properties'];
+  let jsobj = jsonSchemaObj;
+  while (jsobj?.type == JsonType.ARRAY) {
+    jsobj = jsonSchemaObj['items'];
+  }
+  if (jsobj == null || jsobj.type != JsonType.OBJECT || jsobj['properties'] == null) {
+    return null;
+  }
+
+  const properties = jsobj['properties'];
+
   return `
 public class ${path2ClassName(path)} {
     ${handleProperties(properties, queue, path)}
@@ -63,8 +88,8 @@ export default function jsonSchema2JavaBean(jsonSchema: string) {
   }
 
   const jsonSchemaObj = JSON.parse(jsonSchema);
-  if (jsonSchemaObj['$schema'] == null) {
-    throw Error("可能不是合法的 JsonSchema, 无 '$schema' 字段");
+  if (jsonSchemaObj['type'] == null || (jsonSchemaObj['properties'] == null && jsonSchemaObj['items'] == null)) {
+    throw Error("可能不是合法的 JsonSchema");
   }
 
   const queue = [];
@@ -84,10 +109,12 @@ export default function jsonSchema2JavaBean(jsonSchema: string) {
   let target = null;
   while ((target = queue.shift())) {
     const clazz = schemaObjectToJavaBean(target[1], target[0], queue);
-    ret.push({
-      path: target[0],
-      content: clazz,
-    })
+    if (clazz) {
+      ret.push({
+        path: target[0],
+        content: clazz,
+      })
+    }
   }
 
   // ret.push({
