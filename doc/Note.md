@@ -29,6 +29,8 @@ npm install express body-parser compression -S
 pm2 start bao-tool-site.js
 ```
 
+后续更新再部署时, build 后, 将 dist 目录上传覆盖即可.
+
 ## 发布
 
 供下载使用.
