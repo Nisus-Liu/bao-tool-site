@@ -3,8 +3,11 @@ import CodeMirror from "codemirror";
 // import type { EditorConfiguration } from "codemirror";
 // language
 import "codemirror/mode/javascript/javascript.js";
+// C like, 如 java, mode:'text/x-java'
+import "codemirror/mode/clike/clike.js"
 // theme
 import "codemirror/theme/eclipse.css";
+import "codemirror/theme/idea.css"
 import "codemirror/addon/hint/show-hint.css"
 import "codemirror/addon/hint/show-hint.js"
 import "codemirror/addon/hint/anyword-hint.js"
@@ -24,8 +27,8 @@ const AT_KEYWORDS = [
 
 const DEFAULT_CM_OPTIONS = {
   tabSize: 4,
-  // mode: 'text/javascript',  // 模式
-  mode: "application/json",
+  mode: 'text/javascript',  // 模式
+  // mode: "application/json",
   theme: "eclipse", // Theme, import 对应的 css 才能生效
   lineNumbers: true,  // 是否显示行数
   line: true,
@@ -33,7 +36,7 @@ const DEFAULT_CM_OPTIONS = {
   highlightDifferences: true,
   autofocus: false,
   indentUnit: 2,
-  // smartIndent: true,
+  smartIndent: true, // 自动缩进
   // readOnly: true,  // 只读
   showCursorWhenSelecting: true,
   firstLineNumber: 1,
@@ -86,6 +89,10 @@ export default function useCmConfig(customOptions = {}) {
   const cmOptions = Object.assign({}, DEFAULT_CM_OPTIONS, customOptions);
 
   onMounted(() => {
+    if (cmRef.value == null) {
+      // 外面没有使用这个 cmRef
+      return;
+    }
     // cminstance 拿到原始 cm 对象
     let editor = cmRef.value.cminstance;
     // 代码自动提示功能，记住使用cursorActivity事件不要使用change事件，这是一个坑，那样页面直接会卡死

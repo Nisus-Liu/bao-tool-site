@@ -11,19 +11,26 @@
           </a-form-item>
         </a-form>
       </a-tab-pane>
-      <a-tab-pane key="2" tab="预览">
-        <a-anchor style="text-align: left; float: left">
-          <a-anchor-link v-for="item in result" :key="item.path"
-                         :href="'#' + item.path"
-                         :title="item.path" @click="onAnchorClick" />
-        </a-anchor>
-        <div v-for="item in result" :key="item.path">
-          <a-card :bordered="false" style="margin-left: 120px">
-            <template v-slot:title><a style="height: 32px; font-weight: bold" :id="item.path">{{item.path}}</a></template>
-            <Codemirror v-model:value="item.content" :options="cmOptions" :height="600" border />
-          </a-card>
+      <a-tab-pane key="2" tab="预览" >
+        <!--<a-anchor style="text-align: left; float: left">-->
+        <div class="anchor-container">
+          <a-anchor :target-offset="40">
+            <a-anchor-link v-for="item in result" :key="item.path"
+                           :href="'#' + item.path"
+                           :title="item.path" @click="onAnchorClick" />
+          </a-anchor>
         </div>
+        <a-row>
+          <a-col v-for="item in result" :key="item.path" :xl="12" :md="24" >
+            <a-card :bordered="false">
+              <template v-slot:title><a style="height: 32px; font-weight: bold" :id="item.path">{{ item.path }}</a>
+              </template>
+              <Codemirror v-model:value="item.content" :options="jbCmOptions" :height="600" border/>
+            </a-card>
+          </a-col>
+        </a-row>
       </a-tab-pane>
+      <a-back-top />
     </a-tabs>
     <div style="color: orangered">{{ parseError }}</div>
   </a-card>
@@ -60,7 +67,11 @@ export default defineComponent({
       activeKey.value = '2';
     };
 
-    const {cmRef: jsonCmRef, cmOptions} = useCmConfig();
+    const {cmRef: jsonCmRef, cmOptions} = useCmConfig({theme:'idea'});
+    const {cmOptions: jbCmOptions} = useCmConfig({
+      mode: 'text/x-java',
+      autofocus: true,
+    })
 
     const onJsonChange = (evt) => {
       // console.log('onJsonChange', evt);
@@ -97,6 +108,12 @@ export default defineComponent({
       e.preventDefault();
     }
 
+    const anchorTargetContainerRef = ref<HTMLElement|null>(null)
+    function getAnchorTargetContainer() {
+      console.log(anchorTargetContainerRef);
+      return anchorTargetContainerRef.value;
+    }
+
     return {
       activeKey,
       tabPosition,
@@ -106,11 +123,14 @@ export default defineComponent({
       parseError,
       jsonCmRef,
       cmOptions,
+      jbCmOptions,
       onTabChange,
       onSubmit,
       onJsonChange,
       result,
       onAnchorClick,
+      anchorTargetContainerRef,
+      getAnchorTargetContainer,
     }
   },
 })
@@ -118,5 +138,13 @@ export default defineComponent({
 </script>
 
 <style scoped>
-
+  >>> .ant-anchor {
+    display: flex;
+    flex-wrap: wrap;
+    flex-flow: wrap;
+  }
+  /*隐藏锚点菜单的小点*/
+  >>> .ant-anchor-ink-ball.visible {
+    display: none;
+  }
 </style>

@@ -32,7 +32,7 @@
         </a-form>
       </a-tab-pane>
       <a-tab-pane key="2" tab="预览">
-        <Codemirror v-model:value="result" :options="cmOptions" :height="800" border />
+        <Codemirror v-model:value="result" :options="jbCmOptions" :height="800" border />
       </a-tab-pane>
     </a-tabs>
     <div style="color: orangered">{{ parseError }}</div>
@@ -112,6 +112,10 @@ export default defineComponent({
     };
 
     const {cmRef: jsonCmRef, cmOptions} = useCmConfig();
+    const {cmOptions: jbCmOptions} = useCmConfig({
+      mode: 'text/x-java',
+      autofocus: true,
+    });
 
     const onJsonChange = (evt) => {
       // console.log('onJsonChange', evt);
@@ -138,6 +142,7 @@ export default defineComponent({
       onTabChange,
       jsonCmRef,
       cmOptions,
+      jbCmOptions,
       onJsonChange,
       toggleSearchStatus,
       handleToggleSearch,
