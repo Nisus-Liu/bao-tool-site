@@ -1,5 +1,5 @@
 import {onMounted, ref} from "vue";
-import CodeMirror from "codemirror";
+import CodeMirror, {EditorConfiguration} from "codemirror";
 // import type { EditorConfiguration } from "codemirror";
 // language
 import "codemirror/mode/javascript/javascript.js";
@@ -8,6 +8,7 @@ import "codemirror/mode/clike/clike.js"
 // theme
 import "codemirror/theme/eclipse.css";
 import "codemirror/theme/idea.css"
+import "codemirror/theme/xq-light.css"
 import "codemirror/addon/hint/show-hint.css"
 import "codemirror/addon/hint/show-hint.js"
 import "codemirror/addon/hint/anyword-hint.js"
@@ -82,7 +83,7 @@ function getHints (cm, option) {
   })
 }
 
-export default function useCmConfig(customOptions = {}) {
+export default function useCmConfig(customOptions: EditorConfiguration = {}) {
 
   const cmRef = ref();
 

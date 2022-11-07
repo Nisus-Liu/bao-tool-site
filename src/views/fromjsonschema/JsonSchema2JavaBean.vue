@@ -67,7 +67,10 @@ export default defineComponent({
       activeKey.value = '2';
     };
 
-    const {cmRef: jsonCmRef, cmOptions} = useCmConfig({theme:'idea'});
+    const {cmRef: jsonCmRef, cmOptions} = useCmConfig({
+      theme: 'idea',
+      mode: 'application/json'
+    });
     const {cmOptions: jbCmOptions} = useCmConfig({
       mode: 'text/x-java',
       autofocus: true,

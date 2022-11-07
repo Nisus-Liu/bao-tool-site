@@ -100,7 +100,10 @@ export default defineComponent({
       activeKey.value = '2';
     };
 
-    const {cmRef: jsonCmRef, cmOptions} = useCmConfig();
+    const {cmRef: jsonCmRef, cmOptions} = useCmConfig({
+      mode: 'application/json',
+      theme: 'xq-light',
+    });
 
     const onJsonChange = (evt) => {
       // console.log('onJsonChange', evt);
