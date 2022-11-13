@@ -146,6 +146,9 @@ git pull origin feature/v1 // 拉取 gittee 的最新分支代码 (本仓库 ori
 git push github feature/v1
 ```
 
+## 网站 SEO
+[(86条消息) 学会对VUE的SEO优化，你的网站总是排在前面_馒头老爸的博客-CSDN博客_vue seo](https://blog.csdn.net/DengZY926/article/details/105397730)
+
 ## 其他
 ```
 yarn global add @vue/cli

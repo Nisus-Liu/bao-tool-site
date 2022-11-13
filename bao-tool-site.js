@@ -20,6 +20,15 @@ server.all('*', function (req, res, next) {
     }
 })
 
+/*
+ life666.top:10001 访问
+ 作为 tool.life666.top 失效后的备案（未备案导致80端口拦截？）
+*/
+server.get('/', (req, res) => {
+    // res.redirect() 的可选第一个参数是数字 HTTP 状态。
+    res.redirect(301, 'https://service-okd08fdv-1259782064.bj.apigw.tencentcs.com/')
+})
+
 const port = 10001
 
 server.listen(port, () => {
