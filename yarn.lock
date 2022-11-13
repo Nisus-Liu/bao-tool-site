@@ -4574,7 +4574,7 @@ cosmiconfig@^6.0.0:
 
 cpr@^3.0.1:
   version "3.0.1"
-  resolved "https://registry.npmmirror.com/cpr/-/cpr-3.0.1.tgz"
+  resolved "https://registry.npmjs.org/cpr/-/cpr-3.0.1.tgz#b9a55038b7cd81a35c17b9761895bd8496aef1e5"
   integrity sha512-Xch4PXQ/KC8lJ+KfJ9JI6eG/nmppLrPPWg5Q+vh65Qr9EjuJEubxh/H/Le1TmCZ7+Xv7iJuNRqapyOFZB+wsxA==
   dependencies:
     graceful-fs "^4.1.5"
@@ -8536,7 +8536,7 @@ magic-string@^0.25.7:
 
 make-dir-cli@^3.0.0:
   version "3.0.0"
-  resolved "https://registry.npmmirror.com/make-dir-cli/-/make-dir-cli-3.0.0.tgz"
+  resolved "https://registry.npmjs.org/make-dir-cli/-/make-dir-cli-3.0.0.tgz#cf35a79363f3fbab2b67b99e45e1883a2be14d27"
   integrity sha512-8yCjIAOQ8tezWRJWUG3tbvN2I19hiVr8K5DPDVl8fECS3qz0ZbeL194ZGRdf8K3LgvbjDCTadge6NrN/I4XrNw==
   dependencies:
     make-dir "^3.1.0"
@@ -10793,7 +10793,7 @@ rimraf@^2.5.4, rimraf@^2.6.1, rimraf@^2.6.3:
 
 rimraf@^3.0.2:
   version "3.0.2"
-  resolved "https://registry.npmmirror.com/rimraf/-/rimraf-3.0.2.tgz"
+  resolved "https://registry.npmjs.org/rimraf/-/rimraf-3.0.2.tgz#f1a5402ba6220ad52cc1282bac1ae3aa49fd061a"
   integrity sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==
   dependencies:
     glob "^7.1.3"

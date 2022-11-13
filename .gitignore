@@ -2,6 +2,8 @@
 node_modules
 /dist
 
+# scf-express-app
+scf-express-app/dist
 
 # local env files
 .env.local

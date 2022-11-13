@@ -31,6 +31,19 @@ pm2 start bao-tool-site.js
 
 后续更新再部署时, build 后, 将 dist 目录上传覆盖即可.
 
+### 部署到腾讯 Express SCF
+
+```
+~~创建 `bao-tool-site-app` 目录作为 express 部署目录;~~
+1. 创建 `scf-express-app` 作为 express 部署目录 (不足1M, 可以git);
+2. 下载 SCF Express 模板文件, 放到上面的 app 目录;
+3. 代码项目 build;
+4. dist 目录复制到 app 目录.
+
+npm script:
+  "build:scf": "rimraf dist && npm run build && cpr ./dist ./scf-express-app/dist -o",
+```
+
 ## 发布
 
 供下载使用.
@@ -189,3 +202,6 @@ npm run start
 -  npm install pm2 -g 时: npm ERR! typeerror Error: Missing required argument #1
   - [ubuntu使用npm出现 Missing required argument #1问题_简简单单lym的博客-CSDN博客](https://blog.csdn.net/lym594887256/article/details/124234444)
   - npm install -g n; n lts; 安装 v16.16.0 版本的 Node.
+
+- 部署 express 应用
+  - [使用Express部署Vue项目 - 知乎](https://zhuanlan.zhihu.com/p/116749549)

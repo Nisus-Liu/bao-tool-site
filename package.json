@@ -11,6 +11,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "build:scf": "rimraf dist && npm run build && cpr ./dist ./scf-express-app/dist -o",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
   },

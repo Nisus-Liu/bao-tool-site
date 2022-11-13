@@ -1,6 +1,6 @@
 <template>
   <a-layout style="min-height: 100vh">
-    <a-layout-header v-model:collapsed="collapsed" collapsible>
+    <a-layout-header class="banner" v-model:collapsed="collapsed" collapsible>
       <div class="logo" >
         <span>BAO</span>
       </div>
@@ -53,6 +53,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.banner {
+  background: url("../../img/banner.png") center center;
+  background-size: auto;
+}
+
 .logo {
   float: left;
   width: 120px;
@@ -60,8 +65,9 @@ export default {
   line-height: 32px;
   margin: 16px 24px 16px 0;
   /*background: rgba(255, 255, 255, 0.3);*/
-  //background: url("../assets/icon/bao-tool-icon-shuanger.png") center center no-repeat;
+  //background: url("../../img/shuanger.jpeg") center center no-repeat;
   background-size: 100%;
+
   span {
     color: #e1e1e1;
     font-weight: bold;
