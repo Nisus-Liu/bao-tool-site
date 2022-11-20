@@ -1,4 +1,6 @@
 import {ItemType, ParseContext} from "bao-json";
+import {Json2JavaBeanOptions} from "@/type";
+
 // import {ItemType, ParseContext} from "../index.esm.js";
 
 
@@ -8,13 +10,16 @@ import {ItemType, ParseContext} from "bao-json";
  * @param config
  */
 export function json2JavaBean(context: ParseContext, config: Record<string, unknown> = {}) {
+    const options = (config.options || []) as string[];
     // 涉及到 comment 既定配置, 才去 parseComment
-    if (config.isJavadocComment) {
+    const isJavadocComment = options.indexOf(Json2JavaBeanOptions.JavadocComment) > -1;
+    const isValue2CommentIfAbsent = options.indexOf(Json2JavaBeanOptions.Value2CommentIfAbsent) > -1;
+    if (isJavadocComment) {
         context.parseComment();
     }
 
     // // Auto generate at ${new DateFormat().format(DateFormat.DATE_TIME_FMT)}
-  return `${config.isJavadocComment ? toJavadocComment(context.commentMeta?.pureComment) : context.comment?.trim()}
+  return `${isJavadocComment ? toJavadocComment(context.commentMeta?.pureComment) : context.comment?.trim()}
 public class JavaBean {
     ${context.children?.map(it => {
     let type = 'Object';
@@ -36,10 +41,27 @@ public class JavaBean {
             break;
     }
 
-    return `${config.isJavadocComment ? toJavadocComment(it.commentMeta?.pureComment) : it.comment?.trim()}
+    return `${getComment(it, isJavadocComment, isValue2CommentIfAbsent)}
     private ${type} ${it.key};`
 }).join('\n    ')}
 }`;
+}
+
+function getComment(it: ParseContext, isJavadocComment, isValue2CommentIfAbsent) {
+    let hbCmmt = null;
+    if (isValue2CommentIfAbsent && isSimpleType(it.type)) {
+        // 简单类型才替补注释
+        hbCmmt = it.value;
+    }
+    if (isJavadocComment) {
+        return toJavadocComment(it.commentMeta?.pureComment ? it.commentMeta.pureComment : hbCmmt);
+    } else {
+        return it.comment ? it.comment.trim() : '// ' + hbCmmt;
+    }
+}
+
+function isSimpleType(type: ItemType) {
+    return !(type == ItemType.OBJECT || type == ItemType.ARRAY)
 }
 
 function toJavadocComment(pureCmmt) {

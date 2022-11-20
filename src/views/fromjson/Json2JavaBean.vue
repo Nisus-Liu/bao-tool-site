@@ -6,14 +6,30 @@
           <a-form-item label="JSON">
             <Codemirror ref="jsonCmRef" v-model:value="formState.json" :options="cmOptions" :height="400" border @change="onJsonChange" />
           </a-form-item>
-          <a-form-item>
+          <!--<a-form-item>
             <template v-slot:label>Javadoc注释
-              <a-tooltip title="注释是否统一成Javadoc格式的注释"><QuestionCircleOutlined style="margin-left: 8px" /></a-tooltip>
+              <a-tooltip title="注释是否统一成Javadoc格式的注释">
+                <QuestionCircleOutlined style="margin-left: 8px"/>
+              </a-tooltip>
             </template>
             <a-radio-group v-model:value="formState.isJavadocComment">
               <a-radio value="1">是</a-radio>
               <a-radio value="">否</a-radio>
             </a-radio-group>
+          </a-form-item>-->
+          <a-form-item label="选项">
+            <a-checkbox-group v-model:value="formState.options" :options="optionsConfig">
+              <template #label="{ label, tooltip }">
+                <template v-if="tooltip">
+                  <a-tooltip :title="tooltip">
+                    {{ label }}
+                  </a-tooltip>
+                </template>
+                <template v-else>
+                  {{ label }}
+                </template>
+              </template>
+            </a-checkbox-group>
           </a-form-item>
           <!--<template v-if="toggleSearchStatus">
             <a-form-item label="模板">
@@ -48,21 +64,20 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, onMounted, reactive, ref, toRaw} from 'vue';
-import ipcRenderWrap from "@/ipc/ipc_render_wrap";
-import {IpcChannel} from "@/ipc/ipc_channel";
+import {defineComponent, reactive, ref, toRaw} from 'vue';
 import {JsonParser, ParseContext} from "bao-json";
 import {json2JavaBean} from "@/util/render";
 import Codemirror from "codemirror-editor-vue3";
-import {DemoJson1, Test1} from "@/db/demodata";
+import {DemoJson1} from "@/db/demodata";
 import useCmConfig from "@/composables/useCmConfig";
-import { QuestionCircleOutlined } from '@ant-design/icons-vue';
+// import { QuestionCircleOutlined } from '@ant-design/icons-vue';
+import {Json2JavaBeanOptions} from "@/type";
 
 
 export default defineComponent({
   components: {
     Codemirror,
-    QuestionCircleOutlined,
+    // QuestionCircleOutlined,
   },
   setup() {
     const activeKey = ref('1');
@@ -71,8 +86,15 @@ export default defineComponent({
     const formState = reactive({
       json: DemoJson1,
       tpl: '',
-      isJavadocComment: '1',
+      // isJavadocComment: '1',
+      options: [Json2JavaBeanOptions.JavadocComment, Json2JavaBeanOptions.Value2CommentIfAbsent],
     });
+
+    const optionsConfig = [
+      {value: Json2JavaBeanOptions.JavadocComment, label: 'Javadoc注释', tooltip: '注释是否统一成Javadoc格式的注释'},
+      {value: Json2JavaBeanOptions.Value2CommentIfAbsent, label: '值候补注释', tooltip: '没有注释时, 值候补作为注释'},
+      // {value: Json2JavaBeanOptions.Value2Mock, label: '值作为Mock'},
+    ]
 
     /*// 拿到默认 template
     ipcRenderWrap.send(IpcChannel.getTplContent, (e, a) => {
@@ -149,6 +171,7 @@ export default defineComponent({
       onJsonChange,
       toggleSearchStatus,
       handleToggleSearch,
+      optionsConfig,
     };
   },
 });
