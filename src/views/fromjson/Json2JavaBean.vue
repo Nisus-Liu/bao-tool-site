@@ -71,7 +71,7 @@ import Codemirror from "codemirror-editor-vue3";
 import {DemoJson1} from "@/db/demodata";
 import useCmConfig from "@/composables/useCmConfig";
 // import { QuestionCircleOutlined } from '@ant-design/icons-vue';
-import {Json2JavaBeanOptions} from "@/type";
+import {Option, Options} from "@/type";
 
 
 export default defineComponent({
@@ -87,12 +87,12 @@ export default defineComponent({
       json: DemoJson1,
       tpl: '',
       // isJavadocComment: '1',
-      options: [Json2JavaBeanOptions.JavadocComment, Json2JavaBeanOptions.Value2CommentIfAbsent],
+      options: [Option.JavadocComment, Option.ValueAsCommentIfAbsent],
     });
 
     const optionsConfig = [
-      {value: Json2JavaBeanOptions.JavadocComment, label: 'Javadoc注释', tooltip: '注释是否统一成Javadoc格式的注释'},
-      {value: Json2JavaBeanOptions.Value2CommentIfAbsent, label: '值候补注释', tooltip: '没有注释时, 值候补作为注释'},
+      {value: Option.JavadocComment, label: 'Javadoc注释', tooltip: '注释是否统一成Javadoc格式的注释'},
+      {value: Option.ValueAsCommentIfAbsent, label: '值候补注释', tooltip: '没有注释时, 值候补作为注释'},
       // {value: Json2JavaBeanOptions.Value2Mock, label: '值作为Mock'},
     ]
 
@@ -118,7 +118,7 @@ export default defineComponent({
       }
       console.log("----> context: ", context)
       // result.value = ejs.render(formState.tpl, {context});
-      result.value = json2JavaBean(context, {...formState});
+      result.value = json2JavaBean(context, new Options(formState.options));
     }
 
     function onTabChange(currKey) {

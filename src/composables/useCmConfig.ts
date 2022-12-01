@@ -24,6 +24,12 @@ const AT_KEYWORDS = [
   // json schema
   "minLength", "maxLength",
   "minimum", "maximum",
+  "mock",
+  "string", "integer", "natural", "float", "character", "boolean", "url", "domain", "ip", "id", "guid", "now", "timestamp",
+  "date", "time", "datetime", "image", "imageData", "color", "hex", "rgba", "rgb", "hsl",
+  "email", "paragraph", "sentence", "word", "cparagraph", "ctitle", "title", "name", "cname",
+  "cfirst", "clast", "first", "last", "csentence", "cword", "region", "province", "city",
+  "county", "upper", "lower", "pick", "shuffle", "protocol"
 ]
 
 const DEFAULT_CM_OPTIONS = {
@@ -51,12 +57,13 @@ const DEFAULT_CM_OPTIONS = {
   hintOptions: {
     completeSingle: false,
     alignWithWord: false,
-    hint: getHints,
+    hint: getAtHints,
   }
   // $$代码提示配置
 };
 
-function getHints (cm, option) {
+// '@...' 提示
+function getAtHints(cm, option) {
   return new Promise((accept) => {
     setTimeout(() => {
       let list: Array<any> = [];
@@ -65,7 +72,7 @@ function getHints (cm, option) {
       let start = cursor.ch, end = cursor.ch
       const lastAtIx = curLine.lastIndexOf('@');
       if (lastAtIx >= 0) {
-        const pre = curLine.substring(lastAtIx +1);
+        const pre = curLine.substring(lastAtIx + 1);
         if (pre) {
           list = AT_KEYWORDS
               .filter(it => it.startsWith(pre))

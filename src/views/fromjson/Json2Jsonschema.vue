@@ -11,6 +11,20 @@
               <Codemirror v-model:value="formState.tpl" :options="cmOptions" :height="200" border />
             </a-form-item>
           </template>-->
+          <a-form-item label="选项">
+            <a-checkbox-group v-model:value="formState.options" :options="optionsConfig">
+              <template #label="{ label, tooltip }">
+                <template v-if="tooltip">
+                  <a-tooltip :title="tooltip">
+                    {{ label }}
+                  </a-tooltip>
+                </template>
+                <template v-else>
+                  {{ label }}
+                </template>
+              </template>
+            </a-checkbox-group>
+          </a-form-item>
           <a-form-item :wrapper-col="{ span: 14, offset: 4 }">
             <!--<a @click="handleToggleSearch" style="margin-right: 8px">
               {{ toggleSearchStatus ? '收起' : '展开' }}
@@ -47,6 +61,7 @@ import {json2JavaBean, json2Jsonschema} from "@/util/render";
 import Codemirror from "codemirror-editor-vue3";
 import {DemoJson1} from "@/db/demodata";
 import useCmConfig from "@/composables/useCmConfig";
+import {Option, Options} from "@/type";
 
 
 export default defineComponent({
@@ -60,12 +75,12 @@ export default defineComponent({
     const formState = reactive({
       json: DemoJson1,
       tpl: '',
+      options: [Option.ValueAsMock],
     });
 
-    /*// 拿到默认 template
-    ipcRenderWrap.send(IpcChannel.getTplContent, (e, a) => {
-      formState.tpl = a;
-    });*/
+    const optionsConfig = [
+      {value: Option.ValueAsMock, label: '值候补Mock', tooltip: 'mock字段空时, 值作为候补'},
+    ]
 
     const parseError = ref(undefined);
 
@@ -84,7 +99,7 @@ export default defineComponent({
       }
       console.log("----> context: ", context)
 
-      const scobj = json2Jsonschema(context);
+      const scobj = json2Jsonschema(context, new Options(formState.options));
       result.value = JSON.stringify(scobj, null, 2);
     }
 
@@ -133,6 +148,7 @@ export default defineComponent({
       onJsonChange,
       toggleSearchStatus,
       handleToggleSearch,
+      optionsConfig,
     };
   },
 });
