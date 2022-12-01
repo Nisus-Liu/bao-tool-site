@@ -209,7 +209,9 @@ function jsonSimple2Jsonschema(context: ParseContext, schemaResult: Record<strin
         schemaResult['mock'] = {mock}
     } else if (options.has(Option.ValueAsMock) && context.value != null) {
         // value 替补作为 mock
-        schemaResult['mock'] = {mock: context.value}
+        schemaResult['mock'] = {
+            mock: context.value + '' // 使用字符串, 否则, 会触发 Yapi 的bug: 导入后, 点击mock输入框, 白屏
+        };
     }
 
     return schemaResult;
