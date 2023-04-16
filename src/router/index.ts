@@ -23,6 +23,16 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('../views/fromjsonschema/JsonSchema2JavaBean.vue')
   },
   {
+    path: '/fmtconvert',
+    name: 'FmtConvert',
+    component: () => import('../views/fmtconvert/Index.vue')
+  },
+  {
+    path: '/easyweb',
+    name: 'Easyweb',
+    component: () => import('../views/easyweb/Index.vue')
+  },
+  {
     path: '/about',
     name: 'About',
     // route level code-splitting

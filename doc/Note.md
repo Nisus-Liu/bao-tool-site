@@ -208,3 +208,6 @@ npm run start
 
 - 部署 express 应用
   - [使用Express部署Vue项目 - 知乎](https://zhuanlan.zhihu.com/p/116749549)
+- electron-chromedriver ... Client network socket disconnected before secure TLS connection was established ...
+  - https://www.notion.so/nisuslj/LC-electron-vue-vite-d7e8bd45f4a2419093abd3ef2889b49b?pvs=4#04041ea286034742bbbe6b225b748065
+  - `yarn config set electron_mirror https://cdn.npm.taobao.org/dist/electron/`
