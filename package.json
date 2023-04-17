@@ -18,7 +18,7 @@
   "main": "main.ts",
   "dependencies": {
     "@ant-design/icons-vue": "^6.1.0",
-    "ant-design-vue": "^2.2.8",
+    "ant-design-vue": "3.2.16",
     "bao-json": "^1.0.0-beta.6",
     "codemirror": "^5.65.2",
     "codemirror-editor-vue3": "^2.0.6",

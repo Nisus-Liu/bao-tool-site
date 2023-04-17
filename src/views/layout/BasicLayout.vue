@@ -35,7 +35,7 @@
       <div class="postionfixdiv"></div>
       <!--<a-layout>-->
       <!--<a-layout-header style="background: #fff; padding: 0" />-->
-      <a-layout-content style="margin: 16px 16px">
+      <a-layout-content>
         <router-view/>
       </a-layout-content>
       <!--</a-layout>-->
@@ -150,6 +150,7 @@ $bannerBackground: #ffffff;
   z-index: 10000;
   top: 0;
   width: 100%;
+  box-shadow: 0 0px 1px #bfbfbf;
 
   //:deep(.n-menu-item-content-header a) {
   //.n-menu.n-menu--horizontal .n-menu-item-content .n-menu-item-content-header a {

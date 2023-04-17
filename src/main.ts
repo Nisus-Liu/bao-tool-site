@@ -15,13 +15,13 @@ import {
   // create naive ui
   create,
   // component
-  NButton, NSpace, NLayout, NLayoutHeader, NLayoutFooter, NLayoutContent,NScrollbar,
-    NMenu,NCard,NRow,NCol,NCheckbox,NThing,NList,NListItem,NIcon
+  NButton, NSpace, NLayout, NLayoutHeader, NLayoutFooter, NLayoutContent,NLayoutSider,NScrollbar,
+    NMenu,NCard,NRow,NCol,NCheckbox,NThing,NList,NListItem,NIcon,NTooltip
 } from 'naive-ui';
 
 const naive = create({
-  components: [NButton, NSpace, NLayout, NLayoutHeader, NLayoutFooter, NLayoutContent,NScrollbar,
-    NMenu,NCard,NRow,NCol,NCheckbox,NThing,NList,NListItem,NIcon]
+  components: [NButton, NSpace, NLayout, NLayoutHeader, NLayoutFooter, NLayoutContent,NLayoutSider,NScrollbar,
+    NMenu,NCard,NRow,NCol,NCheckbox,NThing,NList,NListItem,NIcon,NTooltip]
 })
 
 const app = createApp(App);

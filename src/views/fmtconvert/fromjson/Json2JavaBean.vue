@@ -21,9 +21,10 @@
             <a-checkbox-group v-model:value="formState.options" :options="optionsConfig">
               <template #label="{ label, tooltip }">
                 <template v-if="tooltip">
-                  <a-tooltip :title="tooltip">
-                    {{ label }}
-                  </a-tooltip>
+                  <n-tooltip>
+                    <template #trigger>{{ label }}</template>
+                    {{tooltip}}
+                  </n-tooltip>
                 </template>
                 <template v-else>
                   {{ label }}

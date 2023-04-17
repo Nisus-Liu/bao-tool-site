@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
+import {createRouter, createWebHashHistory, RouteRecordRaw} from 'vue-router'
 import Home from '../views/Home.vue'
 
 const routes: Array<RouteRecordRaw> = [
@@ -8,24 +8,26 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('../views/Home.vue')
   },
   {
-    path: '/json2javabean',
-    name: 'Json2JavaBean',
-    component: () => import('../views/fromjson/Json2JavaBean.vue')
-  },
-  {
-    path: '/json2jsonschema',
-    name: 'Json2Jsonschema',
-    component: () => import('../views/fromjson/Json2Jsonschema.vue')
-  },
-  {
-    path: '/jsonSchema2JavaBean',
-    name: 'jsonSchema2JavaBean',
-    component: () => import('../views/fromjsonschema/JsonSchema2JavaBean.vue')
-  },
-  {
     path: '/fmtconvert',
     name: 'FmtConvert',
-    component: () => import('../views/fmtconvert/Index.vue')
+    component: () => import('../views/fmtconvert/Index.vue'),
+    children: [
+      {
+        path: 'json2javabean',
+        name: 'Json2JavaBean',
+        component: () => import('../views/fmtconvert/fromjson/Json2JavaBean.vue')
+      },
+      {
+        path: 'json2jsonschema',
+        name: 'Json2Jsonschema',
+        component: () => import('../views/fmtconvert/fromjson/Json2Jsonschema.vue')
+      },
+      {
+        path: 'jsonSchema2JavaBean',
+        name: 'JsonSchema2JavaBean',
+        component: () => import('../views/fmtconvert/fromjsonschema/JsonSchema2JavaBean.vue')
+      },
+    ]
   },
   {
     path: '/easyweb',
