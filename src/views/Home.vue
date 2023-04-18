@@ -2,7 +2,7 @@
   <div class="home">
     <!--<img alt="Vue logo" src="../assets/logo.png">-->
     <!--<HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>-->
-    <n-card content-style="display: flex">
+    <n-card content-style="display: flex" style="height: 100vh">
       <n-card style="text-align: left;" :bordered="false">
         <div style="margin-bottom: 1rem">
           <span style="font-weight: bold">Baotool（宝兔）</span>
@@ -16,10 +16,18 @@
               </n-icon>
             </template>
             <span>格式转换：json转java对象，json转json schema等
-              <i>（能处理注释，
+              <!--<i>（能处理注释，
                 <a href="https://www.npmjs.com/package/bao-json?activeTab=readme">bao-json - npm</a>&nbsp;
                 <a href="https://github.com/wtgroup/bao-json">bao-json - github</a>
-                ）</i>
+                ）</i>-->
+              <i>
+                （能处理注释
+                <a target="_blank" href="https://github.com/wtgroup/bao-json"><img
+                    src="https://img.shields.io/github/stars/wtgroup/bao-json.svg?style=social" alt="" title=""/></a>
+                <a target="_blank" href="https://www.npmjs.com/package/bao-json"><img
+                    src="https://img.shields.io/npm/v/bao-json" alt="npm" title=""/></a>
+                ）
+              </i>
             </span>
           </n-list-item>
           <n-list-item>
@@ -48,7 +56,8 @@
           </n-list-item>
         </n-list>
         <div style="color: #5c6065; font-style: italic; margin-top: 1rem">
-          <span>名称由来：‘Bao’（宝），韦小宝之宝，创建项目时正在重温《鹿鼎记》，亦有宝物、宝器之意，和英文 Tool（工具）合并后得到 “Baotool”，谐音 <span style="font-weight: bold">“宝兔"</span>。</span>
+          <span>名称由来：‘Bao’（宝），韦小宝之宝，创建项目时正在重温《鹿鼎记》，亦有宝物、宝器之意，和英文 Tool（工具）合并后得到 “Baotool”，谐音 <span
+              style="font-weight: bold">“宝兔"</span>。</span>
         </div>
       </n-card>
       <div style="width: 440px;float: right">
@@ -70,7 +79,7 @@ import {Checkbox as CheckBoxTodo} from '@vicons/carbon'
 export default defineComponent({
   name: 'Home',
   components: {
-    CheckBoxDone,CheckBoxTodo
+    CheckBoxDone, CheckBoxTodo
   },
   methods: {}
 });

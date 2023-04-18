@@ -87,14 +87,23 @@ const menuOptions: MenuOption[] = [
   },
   {
     label: () =>
+        // h(
+        //     RouterLink,
+        //     {
+        //       to: {
+        //         name: 'Easyweb',
+        //       }
+        //     },
+        //     { default: () => 'Easyweb' }
+        // ),
         h(
-            RouterLink,
+            'a',
             {
-              to: {
-                name: 'Easyweb',
-              }
+              href: 'https://nisus-liu.gitee.io/easyweb-document',
+              target: '_blank',
+              rel: 'noopenner noreferrer'
             },
-            { default: () => 'Easyweb' }
+            'Easyweb'
         ),
     key: 'Easyweb',
     // icon: renderIcon(HomeIcon)
