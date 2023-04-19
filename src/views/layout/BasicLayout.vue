@@ -1,5 +1,5 @@
 <template>
-  <n-scrollbar style="max-height: 100vh">
+  <!--<n-scrollbar style="max-height: 100vh">-->
     <a-layout style="min-height: 100vh">
       <a-layout-header class="banner" v-model:collapsed="collapsed" collapsible>
         <div class="logo">
@@ -43,7 +43,7 @@
         © 2023 Baotool Project. All Rights Reserved.
       </a-layout-footer>
     </a-layout>
-  </n-scrollbar>
+  <!--</n-scrollbar>-->
 </template>
 
 <script lang="ts">

@@ -13,14 +13,14 @@
           </template>-->
           <a-form-item label="选项">
             <a-checkbox-group v-model:value="formState.options" :options="optionsConfig">
-              <template #label="{ label, tooltip }">
+              <template #label="{ title, tooltip }">
                 <template v-if="tooltip">
                   <a-tooltip :title="tooltip">
-                    {{ label }}
+                    {{ title }}
                   </a-tooltip>
                 </template>
                 <template v-else>
-                  {{ label }}
+                  {{ title }}
                 </template>
               </template>
             </a-checkbox-group>
@@ -79,7 +79,7 @@ export default defineComponent({
     });
 
     const optionsConfig = [
-      {value: Option.ValueAsMock, label: '值候补Mock', tooltip: 'mock字段空时, 值作为候补'},
+      {value: Option.ValueAsMock, title: '值候补Mock', tooltip: 'mock字段空时, 值作为候补'},
     ]
 
     const parseError = ref(undefined);

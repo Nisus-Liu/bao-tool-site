@@ -19,15 +19,15 @@
           </a-form-item>-->
           <a-form-item label="选项">
             <a-checkbox-group v-model:value="formState.options" :options="optionsConfig">
-              <template #label="{ label, tooltip }">
+              <template #label="{ title, tooltip }">
                 <template v-if="tooltip">
                   <n-tooltip>
-                    <template #trigger>{{ label }}</template>
+                    <template #trigger>{{ title }}</template>
                     {{tooltip}}
                   </n-tooltip>
                 </template>
                 <template v-else>
-                  {{ label }}
+                  {{ title }}
                 </template>
               </template>
             </a-checkbox-group>
@@ -92,8 +92,9 @@ export default defineComponent({
     });
 
     const optionsConfig = [
-      {value: Option.JavadocComment, label: 'Javadoc注释', tooltip: '注释是否统一成Javadoc格式的注释'},
-      {value: Option.ValueAsCommentIfAbsent, label: '值候补注释', tooltip: '没有注释时, 值候补作为注释'},
+      // 貌似 字段名不用 label 可能和 slot 的名一样, 触发未知bug, 自定义 template 不生效咯, 估计是将 label 字段做了更高的优先级
+      {value: Option.JavadocComment, title: 'Javadoc注释', tooltip: '注释是否统一成Javadoc格式的注释'},
+      {value: Option.ValueAsCommentIfAbsent, title: '值候补注释', tooltip: '没有注释时, 值候补作为注释'},
       // {value: Json2JavaBeanOptions.Value2Mock, label: '值作为Mock'},
     ]
 
