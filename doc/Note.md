@@ -211,3 +211,4 @@ npm run start
 - electron-chromedriver ... Client network socket disconnected before secure TLS connection was established ...
   - https://www.notion.so/nisuslj/LC-electron-vue-vite-d7e8bd45f4a2419093abd3ef2889b49b?pvs=4#04041ea286034742bbbe6b225b748065
   - `yarn config set electron_mirror https://cdn.npm.taobao.org/dist/electron/`
+- node 版本: v16.20.2 (可行)

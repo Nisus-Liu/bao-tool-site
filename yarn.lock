@@ -5619,6 +5619,13 @@ ejs@^3.1.6:
   dependencies:
     jake "^10.8.5"
 
+elasql@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.npmmirror.com/elasql/-/elasql-1.0.4.tgz#359e7ec12346b9e508cbc8fc7fb08aa3cf04fbf2"
+  integrity sha512-H8+xlprDr0Poca6w0dBnxkP74g3craQZ6f5ylywPCdJ8EzeiZwSLt4wXUVB9HouKYDa1L+enxhq0ah5CUenv5Q==
+  dependencies:
+    node-sqlparser "^1.0.2"
+
 electron-chromedriver@^13.0.0:
   version "13.0.0"
   resolved "https://registry.npmmirror.com/electron-chromedriver/-/electron-chromedriver-13.0.0.tgz#a553af7743215ac463e1e40e0db14d4a542ef762"
@@ -9424,6 +9431,11 @@ node-releases@^2.0.8:
   version "2.0.10"
   resolved "https://registry.npmmirror.com/node-releases/-/node-releases-2.0.10.tgz#c311ebae3b6a148c89b1813fd7c4d3c024ef537f"
   integrity sha512-5GFldHPXVG/YZmFzJvKK2zDSzPKhEp0+ZR5SVaoSag9fsL5YgHbUHDfnG5494ISANDcK4KwPXAx2xqVEydmd7w==
+
+node-sqlparser@^1.0.2:
+  version "1.0.4"
+  resolved "https://registry.npmmirror.com/node-sqlparser/-/node-sqlparser-1.0.4.tgz#1b97bef90f5ad7276de709c5c0bd3f47582049a7"
+  integrity sha512-aw3UIkk+4J6e55x7JH03ZbrYBsfyoMQaCHukfOXgSGqFgc0UG/zM7njxk3y1bc5DXmmtHXlm9yLCacc+qaMBmg==
 
 nopt@^6.0.0:
   version "6.0.0"

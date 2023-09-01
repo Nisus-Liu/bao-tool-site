@@ -82,6 +82,26 @@ export default defineComponent({
           },
         ]
       },
+      {
+        type: 'group',
+        label: 'From SQL',
+        key: 'FromSQL',
+        children: [
+          {
+            label: () =>
+                h(
+                    RouterLink,
+                    {
+                      to: {
+                        name: 'Sql2Es',
+                      }
+                    },
+                    {default: () => 'To ElasticSearch'}
+                ),
+            key: 'SQL2ES'
+          },
+        ]
+      },
     ]
 
     return {

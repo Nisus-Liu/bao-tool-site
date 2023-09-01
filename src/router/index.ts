@@ -27,6 +27,11 @@ const routes: Array<RouteRecordRaw> = [
         name: 'JsonSchema2JavaBean',
         component: () => import('../views/fmtconvert/fromjsonschema/JsonSchema2JavaBean.vue')
       },
+      {
+        path: 'sql2Es',
+        name: 'Sql2Es',
+        component: () => import('../views/fmtconvert/fromsql/Sql2Es.vue')
+      },
     ]
   },
   {
