@@ -211,4 +211,9 @@ npm run start
 - electron-chromedriver ... Client network socket disconnected before secure TLS connection was established ...
   - https://www.notion.so/nisuslj/LC-electron-vue-vite-d7e8bd45f4a2419093abd3ef2889b49b?pvs=4#04041ea286034742bbbe6b225b748065
   - `yarn config set electron_mirror https://cdn.npm.taobao.org/dist/electron/`
+
 - node 版本: v16.20.2 (可行)
+
+- sql -> es
+  - Elasticsearch-sql (现在不维护了, 界面, java后端). 因为有更好的官方支持 [elasticsearch/x-pack/plugin/sql at main · elastic/elasticsearch](https://github.com/elastic/elasticsearch/tree/main/x-pack/plugin/sql)
+  - [sql-where-parser - npm](https://www.npmjs.com/package/sql-where-parser). 解析好了语法树

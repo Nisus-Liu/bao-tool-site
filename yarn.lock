@@ -11790,6 +11790,13 @@ sprintf-js@~1.0.2:
   resolved "https://registry.npmmirror.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
   integrity sha512-D9cPgkvLlV3t3IzL0D0YLvGA9Ahk4PcvVwUbN0dSGr1aP0Nrt4AEnTUbuGvquEC0mA64Gqt1fzirlRs5ibXx8g==
 
+sql2es@^0.0.6:
+  version "0.0.6"
+  resolved "https://registry.npmmirror.com/sql2es/-/sql2es-0.0.6.tgz#9fbd79340ea3a73eb7172197e7c4e08986335cf2"
+  integrity sha512-Fp3mXMozgNEpQ1RWAtR/FAiWa11TaqmMXxW8FdyZVORAFTFWZdANnbmA9cL76JQ9XXjOujsWkn4fW9g0jM0jNA==
+  dependencies:
+    underscore "~1.8.3"
+
 sshpk@^1.7.0:
   version "1.17.0"
   resolved "https://registry.npmmirror.com/sshpk/-/sshpk-1.17.0.tgz#578082d92d4fe612b13007496e543fa0fbcbe4c5"
@@ -12583,6 +12590,11 @@ unbzip2-stream@1.4.3, unbzip2-stream@^1.3.3:
   dependencies:
     buffer "^5.2.1"
     through "^2.3.8"
+
+underscore@~1.8.3:
+  version "1.8.3"
+  resolved "https://registry.npmmirror.com/underscore/-/underscore-1.8.3.tgz#4f3fb53b106e6097fcf9cb4109f2a5e9bdfa5022"
+  integrity sha512-5WsVTFcH1ut/kkhAaHf4PVgI8c7++GiVcpCGxPouI6ZVjsqPnSDf8h/8HtVqc0t4fzRXwnMK70EcZeAs3PIddg==
 
 unicode-canonical-property-names-ecmascript@^2.0.0:
   version "2.0.0"

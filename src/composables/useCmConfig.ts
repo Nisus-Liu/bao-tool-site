@@ -5,15 +5,18 @@ import CodeMirror, {EditorConfiguration} from "codemirror";
 import "codemirror/mode/javascript/javascript.js";
 // C like, 如 java, mode:'text/x-java'
 import "codemirror/mode/clike/clike.js"
+import "codemirror/mode/sql/sql.js"
 // theme
 import "codemirror/theme/eclipse.css";
 import "codemirror/theme/idea.css"
 import "codemirror/theme/xq-light.css"
+// addon
 import "codemirror/addon/hint/show-hint.css"
 import "codemirror/addon/hint/show-hint.js"
 import "codemirror/addon/hint/anyword-hint.js"
 import "codemirror/addon/edit/matchbrackets.js"
 import "codemirror/addon/edit/closebrackets.js"
+import "codemirror/addon/hint/sql-hint.js"
 
 const AT_KEYWORDS = [
   "required",

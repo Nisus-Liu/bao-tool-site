@@ -3,7 +3,7 @@
     <a-tabs v-model:activeKey="activeKey" :tab-position="tabPosition" @change="onTabChange">
       <a-tab-pane key="1" tab="配置">
         <a-form :model="formState" :label-col="labelCol" :wrapper-col="wrapperCol">
-          <a-form-item label="JSON Schema">
+          <a-form-item label="输入">
             <Codemirror ref="originCmRef" v-model:value="formState.origin" :options="cmOptions" :height="400" border
                         @change="onJsonChange"/>
           </a-form-item>
@@ -24,8 +24,7 @@
 <script lang="ts">
 import {defineComponent, reactive, ref} from 'vue';
 import useCmConfig from "@/composables/useCmConfig";
-
-const convert = require('elasql').convert
+ import {convert} from "@/lib/elasql/index.js"
 
 
 export default defineComponent({
@@ -52,13 +51,14 @@ export default defineComponent({
       activeKey.value = '2';
     };
 
+    //代码提示需要覆盖 hintOptions, 但, 效果有点诡异, 按 t, 自动 TABLE 上屏, 不给选择的机会
     const {cmRef: originCmRef, cmOptions} = useCmConfig({
       theme: 'idea',
-      mode: 'application/json',
+      mode: 'text/x-sql',
       lineWrapping: true,
     });
     const {cmOptions: resultCmOptions} = useCmConfig({
-      mode: 'text/x-java',
+      mode: 'application/json',
       autofocus: true,
     })
 
