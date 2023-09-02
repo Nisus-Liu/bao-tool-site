@@ -11,3 +11,11 @@ export const capitalize = (str: string) => {
 export const nop = () => {
   // do nothing
 }
+
+/*
+休眠函数sleep
+调用 await sleep(1500)
+ */
+export function sleep(ms) {
+  return new Promise(resolve=>setTimeout(resolve, ms))
+}

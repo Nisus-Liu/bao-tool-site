@@ -1,3 +1,29 @@
+const pkg = require('./package.json');
+const fs = require('fs');
+const version = pkg.version
+const verinfo = {
+  "version": version,
+  "ts": new Date(),
+}
+
+/*
+休眠函数sleep
+调用 await sleep(1500)
+ */
+function sleep(ms) {
+  return new Promise(resolve=>setTimeout(resolve, ms))
+}
+
+setTimeout(async () => {
+  while (fs.existsSync("./dist") == false) {
+    await sleep(1000)
+  }
+
+  fs.writeFile("./dist/version", JSON.stringify(verinfo), () => {
+    console.log(verinfo)
+  });
+}, 10 * 1000)
+
 module.exports = {
   publicPath: process.env.NODE_ENV === 'production' ? './' : './',
   pluginOptions: {
